@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Essensgeldkasse.MainPage"
+             Loaded="MainPage_Loaded">
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="LightSkyBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid ColumnDefinitions="560,500" RowDefinitions="auto,auto">
+        <ScrollView>
+            <StackLayout  Grid.Column="0" Grid.Row="0">
+                <StackLayout BackgroundColor="#871414">
+                    <Grid ColumnDefinitions="80,120,120, 120,120">
+                        <Button Text="Code" Grid.Column="0" BackgroundColor="#871414" CornerRadius="0"  ImageSource="sorting_arrow.png" ContentLayout="Right, 0" >
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BtnCodeOnTapGestureRecognizerDoubleTapped"
+                              NumberOfTapsRequired="2" />
+                                <TapGestureRecognizer Tapped="BtnCodeOnTapGestureRecognizerSingleTapped"
+                              NumberOfTapsRequired="1" />
+                            </Button.GestureRecognizers>
+                        </Button>
+                        <Button Text="Vorname" Grid.Column="1" BackgroundColor="#871414" CornerRadius="0"  ImageSource="sorting_arrow.png" ContentLayout="Right, 0" >
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BtnFirstNameOnTapGestureRecognizerDoubleTapped"
+                              NumberOfTapsRequired="2" />
+                                <TapGestureRecognizer Tapped="BtnFirstNameOnTapGestureRecognizerSingleTapped"
+                              NumberOfTapsRequired="1" />
+                            </Button.GestureRecognizers>
+                        </Button>
+                        <Button Text="Nachname" Grid.Column="2" BackgroundColor="#871414" CornerRadius="0" ImageSource="sorting_arrow.png" ContentLayout="Right, 0" >
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BtnLastNameOnTapGestureRecognizerDoubleTapped"
+                              NumberOfTapsRequired="2" />
+                                <TapGestureRecognizer Tapped="BtnLastNameOnTapGestureRecognizerSingleTapped"
+                              NumberOfTapsRequired="1" />
+                            </Button.GestureRecognizers>
+                        </Button>
+                        <Button Text="Saldo" Grid.Column="3" BackgroundColor="#871414" CornerRadius="0"></Button>
+                    </Grid>
+                </StackLayout>
+                <StackLayout Grid.Column="0" Grid.Row="0">
+                    <ScrollView VerticalOptions="StartAndExpand" Orientation="Both" HorizontalOptions="StartAndExpand">
+                        <CollectionView x:Name="listClients" SelectionMode="Single" SelectionChanged="OnItemSelectedChanged" MaximumHeightRequest="500" >
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate >
+
+                                    <Grid  ColumnDefinitions="80,120,120, 120, 100" >
+                                        <Label Text="{Binding Code}" Grid.Column="0" HorizontalTextAlignment="Center" Margin="0" Padding="0" HeightRequest="30"/>
+                                        <Label Text="{Binding FirstName}" Grid.Column="1" HorizontalTextAlignment="Center" Margin="0" Padding="0" HeightRequest="30" />
+                                        <Label Text="{Binding LastName}" Grid.Column="2" HorizontalTextAlignment="Center" HeightRequest="30"/>
+                                        <Label x:Name="LblSaldo" Text="{Binding Saldo, StringFormat='{0:F2} €'}"  Margin="0" Padding="0" HeightRequest="30" TextColor="{Binding ForegroundColor}" Grid.Column="3" HorizontalTextAlignment="Center"></Label>
+                                        <Button Text="Edit" Clicked="Edit_Command" BackgroundColor="Transparent" BorderWidth="0" BorderColor="Transparent" Grid.Column="4" TextColor="Blue" ></Button>
+                                      
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </ScrollView>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+        <StackLayout Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
+            <Grid x:Name="gridButtonsDyn" ColumnDefinitions="140,140,140" RowDefinitions="70,70,70, 70, 70,70,70" >
+           </Grid>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="EntCash" WidthRequest="150" HeightRequest="40" Placeholder="Gegeben" ></Entry>
+                    <Button x:Name="BtnCash" WidthRequest="150" Text="Kasse" HeightRequest="70" Clicked="BtnCash_Click"></Button>
+
+                </StackLayout>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Essensgeldkasse.Views.AddClient"
+             Title="AddClient"
+             WidthRequest="300"
+             HeightRequest="200">
+    <VerticalStackLayout>
+        <Label 
+            Text="Add Client"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Entry x:Name="TbID" Text="{Binding ID}" IsVisible="false"></Entry>
+        <Entry x:Name="TbCode" Placeholder="Code" Text="{Binding Code}"></Entry>
+        <Entry x:Name="TbFirstName" Placeholder="Vorname" Text="{Binding FirstName}"></Entry>
+        <Entry x:Name="TbLastName" Placeholder="Nachname" Text="{Binding LastName}"></Entry>
+        <Entry x:Name="TbSaldo" Placeholder="Saldo" Text="{Binding Saldo}"></Entry>
+        <HorizontalStackLayout>
+        <Button Text="Save" x:Name="BtnAddClient" Clicked="OnBtnAddClient_Clicked"></Button>
+            <Button Text="Delete" x:Name="BtnDeleteClient" Clicked="OnBtnDeleteClient_Clicked"></Button>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
